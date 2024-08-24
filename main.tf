@@ -28,6 +28,18 @@ data "datadog_role" "this" {
   filter = each.key
 }
 
+data "datadog_team" "this" {
+  for_each = var.teams
+
+  filter_keyword = each.key
+}
+
+data "datadog_user" "this" {
+  for_each = var.users
+
+  filter = each.key
+}
+
 # Datadog Organization Settings Resource
 # https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/organization_settings
 
@@ -43,14 +55,12 @@ resource "datadog_organization_settings" "osinfra" {
     }
 
     saml_autocreate_users_domains {
-      domains = [
-        "osinfra.io",
-      ]
-      enabled = true
+      domains = []
+      enabled = false
     }
 
     saml_idp_initiated_login {
-      enabled = true
+      enabled = false
     }
 
     saml_strict_mode {
@@ -71,13 +81,14 @@ resource "datadog_team" "this" {
 }
 
 # Datadog Team Membership Resource
-# https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/team_member
+# https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/team_membership
 
 resource "datadog_team_membership" "this" {
   for_each = local.teams
 
-  team_id = each.value.team
-  user_id = each.value.group
+  role    = "admin"
+  team_id = data.datadog_team.this[each.value.team].id
+  user_id = data.datadog_user.this[each.value.user].id
 }
 
 # Datadog User Resource

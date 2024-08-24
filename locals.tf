@@ -9,9 +9,9 @@ locals {
 
     for user_key, user in var.users : [
       for team in user.teams : {
-        group = user_key
-        team  = team
+        user = user_key
+        team = team
       }
     ]
-  ]) : "${team.group}-${team.team}" => team }
+  ]) : "${team.user}-${team.team}" => team }
 }
