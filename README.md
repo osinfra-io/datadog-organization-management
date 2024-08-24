@@ -13,7 +13,7 @@ This repository is an example of IaC for managing a Datadog organization using [
 - Documentation: [docs.osinfra.io](https://docs.osinfra.io/product-guides/datadog)
 - Service Interfaces: [github.com](https://github.com/osinfra-io/datadog-organization-management/issues/new/choose)
 
-## <img align="left" width="35" height="35" src="https://github.com/osinfra-io/datadog-organization-management/assets/1610100/39d6ae3b-ccc2-42db-92f1-276a5bc54e65"> Development
+## <img align="left" width="35" height="35" src="https://github.com/osinfra-io/github-organization-management/assets/1610100/39d6ae3b-ccc2-42db-92f1-276a5bc54e65"> Development
 
 We focus on the core fundamental practice of cloud engineering, Infrastructure as Code.
 
