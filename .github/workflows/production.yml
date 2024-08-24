@@ -1,0 +1,37 @@
+name: Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+
+# For reusable workflows, the permissions setting for id-token should be set to write at the
+# caller workflow level or in the specific job that calls the reusable workflow.
+
+permissions:
+  id-token: write
+
+jobs:
+  main:
+    name: "Main"
+    uses: osinfra-io/github-terraform-gcp-called-workflows/.github/workflows/plan-and-apply.yml@v0.2.5
+    if: github.actor != 'osinfra-sa'
+    with:
+      checkout_ref: ${{ github.ref }}
+      environment: production
+      github_environment: "Production: Main"
+      service_account: plt-dd-organization-github@ptl-lz-terraform-tf62-prod.iam.gserviceaccount.com
+      terraform_plan_args: -var-file=tfvars/production.tfvars
+      terraform_state_bucket: plt-dd-organization-e194-prod
+      terraform_version: ${{ vars.TERRAFORM_VERSION }}
+      terraform_workspace: main-production
+      workload_identity_provider: projects/134040294660/locations/global/workloadIdentityPools/github-actions/providers/github-actions-oidc
+    secrets:
+      gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      infracost_api_key: ${{ secrets.INFRACOST_API_KEY }}
+      terraform_plan_secret_args: >-
+        -var="datadog_api_key=${{ secrets.DATADOG_API_KEY }}"
+        -var="datadog_app_key=${{ secrets.DATADOG_APP_KEY }}"
