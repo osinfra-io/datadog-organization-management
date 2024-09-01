@@ -7,6 +7,16 @@ import {
 }
 
 import {
+  to = datadog_logs_index.this["main"]
+  id = "main"
+}
+
+import {
+  to = datadog_logs_index_order.this
+  id = data.datadog_logs_indexes_order.this.id
+}
+
+import {
   for_each = var.teams
   to       = datadog_team.this[each.key]
   id       = data.datadog_team.this[each.key].id

@@ -1,3 +1,40 @@
+log_indexes = {
+  "debug" = {
+    daily_limit    = 30000
+    retention_days = 15 # Set to 3 when CSM enables the log retention policy
+    filter_query   = "status:debug"
+  }
+
+  "envoy" = {
+    daily_limit    = 500000
+    retention_days = 15 # Set to 7 when CSM enables the log retention policy
+    filter_query   = "source:envoy"
+  }
+
+  "istio" = {
+    daily_limit    = 25000
+    retention_days = 15 # Set to 7 when CSM enables the log retention policy
+    filter_query   = "source:istio"
+  }
+
+  "main" = {
+    exclusion_filters = [
+      {
+        name         = "Exclude service:k8s.io"
+        filter_query = "service:k8s.io"
+      },
+      {
+        name         = "Exclude source:gcp.gce.subnetwork"
+        filter_query = "source:gcp.gce.subnetwork"
+      },
+      {
+        name         = "Exclude service:monitoring.googleapis.com metrics service method"
+        filter_query = "service:monitoring.googleapis.com method:google.monitoring.v3.metricservice.*"
+      }
+    ]
+  }
+}
+
 teams = {
   "enabling-security" = {
     name        = "Enabling: Security"
