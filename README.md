@@ -50,10 +50,13 @@ Links to documentation and other resources required to develop and iterate in th
 
 | Name | Type |
 |------|------|
+| [datadog_logs_index.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/logs_index) | resource |
+| [datadog_logs_index_order.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/logs_index_order) | resource |
 | [datadog_organization_settings.osinfra](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/organization_settings) | resource |
 | [datadog_team.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/team) | resource |
 | [datadog_team_membership.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/team_membership) | resource |
 | [datadog_user.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/user) | resource |
+| [datadog_logs_indexes_order.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/data-sources/logs_indexes_order) | data source |
 | [datadog_role.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/data-sources/role) | data source |
 | [datadog_team.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/data-sources/team) | data source |
 | [datadog_user.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/data-sources/user) | data source |
@@ -64,6 +67,7 @@ Links to documentation and other resources required to develop and iterate in th
 |------|-------------|------|---------|:--------:|
 | datadog\_api\_key | Datadog API key | `string` | n/a | yes |
 | datadog\_app\_key | Datadog APP key | `string` | n/a | yes |
+| log\_indexes | Map of log indexes | ```map(object({ daily_limit = optional(number, 2000000) daily_limit_reset_time = optional(string, "07:00") daily_limit_reset_utc_offset = optional(string, "-04:00") daily_limit_warning_threshold_percentage = optional(number, 85) filter_query = optional(string, "") retention_days = optional(number, 15) exclusion_filters = optional(list(object({ name = optional(string, null) is_enabled = optional(bool, true) filter_query = optional(string, null) sample_rate = optional(number, 1) })), null) }))``` | n/a | yes |
 | teams | Map of Datadog teams to create | ```map(object({ description = string name = string }))``` | n/a | yes |
 | users | Map of Datadog users to create | ```map(object({ first_name = optional(string, null) last_name = optional(string, null) name = string role = string teams = optional(list(string), null) }))``` | n/a | yes |
 

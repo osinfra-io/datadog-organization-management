@@ -14,6 +14,11 @@ provider "datadog" {
   app_key = var.datadog_app_key
 }
 
+# Datadog Logs Index Order Data Source
+# https://registry.terraform.io/providers/DataDog/datadog/latest/docs/data-sources/logs_index_order
+
+data "datadog_logs_indexes_order" "this" {}
+
 # Datadog Role Data Source
 # https://registry.terraform.io/providers/DataDog/datadog/latest/docs/data-sources/role
 
@@ -38,6 +43,55 @@ data "datadog_user" "this" {
   for_each = var.users
 
   filter = each.key
+}
+
+# Datadog Logs Index Resource
+# https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/logs_index
+
+resource "datadog_logs_index" "this" {
+  for_each = var.log_indexes
+
+
+  daily_limit = each.value.daily_limit
+
+  daily_limit_reset {
+    reset_time       = each.value.daily_limit_reset_time
+    reset_utc_offset = each.value.daily_limit_reset_utc_offset
+  }
+
+  daily_limit_warning_threshold_percentage = each.value.daily_limit_warning_threshold_percentage
+
+  filter {
+    query = each.value.filter_query
+  }
+
+  name           = each.key
+  retention_days = each.value.retention_days
+
+  dynamic "exclusion_filter" {
+    for_each = each.value.exclusion_filters == null ? [] : each.value.exclusion_filters
+    content {
+      name       = exclusion_filter.value.name
+      is_enabled = exclusion_filter.value.is_enabled
+      filter {
+        query       = exclusion_filter.value.filter_query
+        sample_rate = exclusion_filter.value.sample_rate
+      }
+    }
+  }
+}
+
+# Datadog Logs Index Order Resource
+# https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/logs_index_order
+
+resource "datadog_logs_index_order" "this" {
+  name = "logs-index-order"
+  indexes = [
+    datadog_logs_index.this["debug"].id,
+    datadog_logs_index.this["istio"].id,
+    datadog_logs_index.this["envoy"].id,
+    datadog_logs_index.this["main"].id
+  ]
 }
 
 # Datadog Organization Settings Resource
