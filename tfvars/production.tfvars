@@ -28,6 +28,14 @@ log_indexes = {
         filter_query = "source:gcp.gce.subnetwork"
       },
       {
+        name = "Exclude source:gcp.gcs.backend.service check-probe"
+
+        # The Ingress controller performs periodic checks of service account permissions by fetching a test resource from your Google Cloud project.
+        # https://cloud.google.com/kubernetes-engine/docs/concepts/ingress#implementation_details
+
+        filter_query = "source:gcp.gce.backend.service status:error @data.protoPayload.authorizationInfo.resource:projects/*/global/backendServices/k8s-ingress-svc-acct-permission-check-probe"
+      },
+      {
         name         = "Exclude service:monitoring.googleapis.com metrics service method"
         filter_query = "service:monitoring.googleapis.com method:google.monitoring.v3.metricservice.*"
       }
