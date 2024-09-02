@@ -1,7 +1,6 @@
 package labels
 
-import future.keywords.if
-import future.keywords.in
+import rego.v1
 
 required_labels := ["cost-center", "team", "env", "repository"]
 
