@@ -33,13 +33,16 @@ See the documentation for setting up a local development environment [here](http
 
 Links to documentation and other resources required to develop and iterate in this repository successfully.
 
+- [csm custom rules](https://docs.datadoghq.com/security/cloud_security_management/misconfigurations/custom_rules)
+  - [open policy agent](https://www.openpolicyagent.org)
+- [logs indexes](https://docs.datadoghq.com/logs/indexes)
 - [organization settings](https://docs.datadoghq.com/account_management/org_settings)
 - [teams](https://docs.datadoghq.com/account_management/teams)
 - [users](https://docs.datadoghq.com/account_management/users)
 
 ### 📓 Terraform Documentation
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 #### Providers
 
 | Name | Version |
@@ -76,4 +79,4 @@ Links to documentation and other resources required to develop and iterate in th
 | Name | Description |
 |------|-------------|
 | organization\_id | The organization ID |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
