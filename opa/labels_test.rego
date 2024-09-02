@@ -1,4 +1,4 @@
-package labels
+package labels_test
 
 import data.labels
 import rego.v1
