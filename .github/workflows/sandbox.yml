@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.1.7
 
     - name: OPA setup
       uses: open-policy-agent/setup-opa@v2.2.0
@@ -30,6 +30,9 @@ jobs:
     - name: OPA tests
       id: test
       run: opa test opa/*.rego --verbose
+
+    - name: blaa
+      run: echo ${{ steps.test.outputs.stdout }}
 
     - name: OPA summary
       run: |
