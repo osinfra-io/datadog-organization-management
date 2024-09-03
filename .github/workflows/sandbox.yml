@@ -29,12 +29,11 @@ jobs:
 
     - name: Run OPA Tests
       id: test
-      run: |
-        opa test opa/*.rego -v
+      run: opa test opa/*.rego -v
 
-    - name: OPA Test summary
+    - name: OPA summary
       run: |
         echo -e '🎯 OPA test:' >> $GITHUB_STEP_SUMMARY
-        echo -e '```none' >> $GITHUB_STEP_SUMMARY
+        echo -e '```opa' >> $GITHUB_STEP_SUMMARY
         echo -e '${{ steps.test.outputs.stdout }}' >> $GITHUB_STEP_SUMMARY
         echo -e '```' >> $GITHUB_STEP_SUMMARY
