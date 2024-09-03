@@ -29,10 +29,10 @@ jobs:
 
     - name: OPA tests
       id: test
-      run: opa test opa/*.rego --verbose
-
-    - name: blaa
-      run: echo ${{ steps.test.outputs.stdout }}
+      run: |
+        output=$(opa test opa/*.rego --verbose)
+        echo "$output"
+        echo "::set-output name=stdout::$output"
 
     - name: OPA summary
       run: |
