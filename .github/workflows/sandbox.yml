@@ -29,10 +29,7 @@ jobs:
 
     - name: OPA tests
       id: test
-      run: |
-        output=$(opa test opa/*.rego --verbose)
-        echo "$output"
-        echo "::set-output name=stdout::$output"
+      run: opa test opa/*.rego
 
     - name: OPA summary
       run: |
