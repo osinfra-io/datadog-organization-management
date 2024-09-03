@@ -4,10 +4,10 @@ import rego.v1
 
 required_labels := ["cost-center", "team", "env", "repository"]
 
-parse_labels(resource) = {label_key |
+parse_labels(resource) := {label_key |
 	some i
 	label := resource.labels[i]
-	split(label, ":", parts)
+	parts := split(label, ":")
 	label_key := parts[0]
 }
 
@@ -16,11 +16,11 @@ all_required_labels_present(resource) if {
 	count({label | label := required_labels[_]; not label in parsed_labels}) == 0
 }
 
-eval(resource) = result if {
+eval(resource) := result if {
 	skip := false
 	not skip
 	all_required_labels_present(resource)
 	result = "pass"
-} else = result if {
+} else := result if {
 	result = "fail"
 }
