@@ -1,0 +1,132 @@
+---
+apiVersion: v3
+kind: system
+metadata:
+  name: datadog
+  description: >
+    Gain complete visibility into any dynamic environment. Unify and correlate data from disparate sources, rapidly
+    resolve performance issues, and secure your cloud environment in real-time.
+
+  displayName: Datadog
+  links:
+    - name: Gitbook
+      type: doc
+      provider: Gitbook
+      url: "https://docs.osinfra.io/product-guides/datadog"
+
+    - name: GitHub
+      type: repo
+      provider: Github
+      url: "https://github.com/osinfra-io/google-cloud-kubernetes"
+
+    - name: GitHub
+      type: repo
+      provider: Github
+      url: "https://github.com/osinfra-io/terraform-kubernetes-datadog-operator"
+
+    - name: GitHub
+      type: repo
+      provider: Github
+      url: "https://github.com/osinfra-io/terraform-datadog-google-integration"
+
+    - name: GitHub
+      type: repo
+      provider: Github
+      url: "https://github.com/osinfra-io/datadog-organization-management"
+
+  contacts:
+    - type: email
+      contact: platform-datadog@osinfra.io
+    - type: google-chat
+      contact: "https://chat.google.com/room/AAAAwEayJ3s?cls=7"
+
+  owner: platform-datadog
+
+spec:
+  components:
+    - 'service:datadog-agent'
+    - 'service:datadog-cluster-agent'
+    - 'service:datadog-operator'
+
+datadog:
+  performanceData:
+    tags:
+      - 'service:datadog-agent'
+      - 'service:datadog-cluster-agent'
+      - 'service:datadog-operator'
+
+  pipelines:
+    fingerprints:
+      - t5XxqfDN7u7J
+      - kqbxYGu8QC_d
+      - 0FQTEZZ2hCJC
+
+---
+apiVersion: v3
+kind: service
+metadata:
+  name: datadog-agent
+  description: >
+    The Datadog Agent is software that runs on your hosts. It collects events and metrics from hosts and
+    sends them to Datadog, where you can analyze your monitoring and performance data.
+
+  displayName: Datadog Agent
+
+spec:
+  tier: Zero
+  type: service
+  languages:
+    - go
+
+  dependsOn:
+    - service:datadog-operator
+
+datadog:
+  performanceData:
+    tags:
+      - 'service:datadog-agent'
+
+---
+apiVersion: v3
+kind: service
+metadata:
+  name: datadog-cluster-agent
+  description: The Datadog Cluster Agent is a containerized application that runs in your Kubernetes cluster.
+  displayName: Datadog Cluster Agent
+
+spec:
+  tier: Zero
+  type: service
+  languages:
+    - go
+
+  dependsOn:
+    - service:datadog-operator
+
+datadog:
+  performanceData:
+    tags:
+      - 'service:datadog-cluster-agent'
+
+---
+apiVersion: v3
+kind: service
+metadata:
+  name: datadog-operator
+  description: >
+    The Datadog Operator aims to provide a new way of deploying the Datadog Agent on Kubernetes. Once deployed,
+    the Datadog Operator provides agent configuration validation, orchestration of creating/updating Datadog Agent
+    resources, and other features.
+
+  displayName: Datadog Operator
+
+spec:
+  tier: Zero
+  type: service
+  languages:
+    - go
+
+datadog:
+  performanceData:
+    tags:
+      - 'service:datadog-operator'
