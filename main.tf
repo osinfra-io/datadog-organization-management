@@ -143,6 +143,11 @@ resource "datadog_team_membership" "this" {
   role    = "admin"
   team_id = data.datadog_team.this[each.value.team].id
   user_id = data.datadog_user.this[each.value.user].id
+
+  depends_on = [
+    data.datadog_team.this,
+    data.datadog_user.this
+  ]
 }
 
 # Datadog User Resource
