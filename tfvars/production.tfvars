@@ -49,6 +49,11 @@ teams = {
     description = "Enabling team responsible for security."
   }
 
+  "platform-datadog" = {
+    name        = "Platform: Datadog"
+    description = "Platform team responsible for Datadog."
+  }
+
   "platform-google-cloud-kubernetes" = {
     name        = "Platform: Google Kubernetes Engine"
     description = "Platform team responsible for Google Kubernetes Engine."
