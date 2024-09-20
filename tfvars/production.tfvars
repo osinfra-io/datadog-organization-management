@@ -1,4 +1,10 @@
 log_indexes = {
+  datadog = {
+    daily_limit    = 30000
+    retention_days = 3
+    filter_query   = "service:datadog-agent service:datadog-operator"
+  }
+
   debug = {
     daily_limit    = 30000
     retention_days = 3
