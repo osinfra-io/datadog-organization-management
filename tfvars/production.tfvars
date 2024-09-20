@@ -1,32 +1,52 @@
 log_indexes = {
-  "debug" = {
+  debug = {
     daily_limit    = 30000
-    retention_days = 15 # Set to 3 when CSM enables the log retention policy
+    retention_days = 3
     filter_query   = "status:debug"
   }
 
-  "envoy" = {
+  envoy = {
     daily_limit    = 500000
-    retention_days = 15 # Set to 7 when CSM enables the log retention policy
+    retention_days = 7
     filter_query   = "source:envoy"
   }
 
-  "istio" = {
-    daily_limit    = 25000
-    retention_days = 15 # Set to 7 when CSM enables the log retention policy
-    filter_query   = "source:istio"
-  }
+  subnet = {
+    daily_limit = 500000
 
-  "main" = {
     exclusion_filters = [
-      {
-        name         = "Exclude service:k8s.io"
-        filter_query = "service:k8s.io"
-      },
       {
         name         = "Exclude source:gcp.gce.subnetwork"
         filter_query = "source:gcp.gce.subnetwork"
-      },
+      }
+    ]
+
+    retention_days = 7
+    filter_query   = "source:gcp.gce.subnetwork"
+  }
+
+  k8s = {
+    daily_limit = 500000
+
+    exclusion_filters = [
+      {
+        name         = "Exclude source:k8s.io"
+        filter_query = "service:k8s.io"
+      }
+    ]
+
+    retention_days = 3
+    filter_query   = "service:k8s.io"
+  }
+
+  istio = {
+    daily_limit    = 25000
+    retention_days = 7
+    filter_query   = "source:istio"
+  }
+
+  main = {
+    exclusion_filters = [
       {
         name = "Exclude source:gcp.gcs.backend.service check-probe"
 
@@ -44,27 +64,27 @@ log_indexes = {
 }
 
 teams = {
-  "enabling-security" = {
+  enabling-security = {
     name        = "Enabling: Security"
     description = "Enabling team responsible for security."
   }
 
-  "platform-datadog" = {
+  platform-datadog = {
     name        = "Platform: Datadog"
     description = "Platform team responsible for Datadog."
   }
 
-  "platform-google-cloud-kubernetes" = {
+  platform-google-cloud-kubernetes = {
     name        = "Platform: Google Kubernetes Engine"
     description = "Platform team responsible for Google Kubernetes Engine."
   }
 
-  "platform-google-cloud-landing-zone" = {
+  platform-google-cloud-landing-zone = {
     name        = "Platform: Google Cloud Landing Zone"
     description = "Platform team responsible for the Google Cloud Landing Zone."
   }
 
-  "stream-customer-trust" = {
+  stream-customer-trust = {
     name        = "Stream: Customer Trust"
     description = "Stream team responsible for customer trust."
   }

@@ -47,7 +47,7 @@ Links to documentation and other resources required to develop and iterate in th
 
 | Name | Version |
 |------|---------|
-| datadog | 3.43.1 |
+| datadog | 3.44.1 |
 
 #### Resources
 
