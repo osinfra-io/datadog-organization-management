@@ -87,6 +87,7 @@ resource "datadog_logs_index" "this" {
 resource "datadog_logs_index_order" "this" {
   name = "logs-index-order"
   indexes = [
+    datadog_logs_index.this["datadog"].id,
     datadog_logs_index.this["debug"].id,
     datadog_logs_index.this["envoy"].id,
     datadog_logs_index.this["k8s"].id,
