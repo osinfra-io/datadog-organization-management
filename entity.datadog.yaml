@@ -79,7 +79,7 @@ spec:
     - go
 
   dependsOn:
-    - service:datadog-operator
+    - 'service:datadog-operator'
 
 datadog:
   performanceData:
@@ -101,7 +101,7 @@ spec:
     - go
 
   dependsOn:
-    - service:datadog-operator
+    - 'service:datadog-operator'
 
 datadog:
   performanceData:
