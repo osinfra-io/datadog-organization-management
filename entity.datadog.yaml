@@ -7,7 +7,7 @@ metadata:
     Gain complete visibility into any dynamic environment. Unify and correlate data from disparate sources, rapidly
     resolve performance issues, and secure your cloud environment in real-time.
 
-  displayName: Datadog
+  displayName: datadog
   links:
     - name: Gitbook
       type: doc
@@ -70,7 +70,7 @@ metadata:
     The Datadog Agent is software that runs on your hosts. It collects events and metrics from hosts and
     sends them to Datadog, where you can analyze your monitoring and performance data.
 
-  displayName: Datadog Agent
+  displayName: datadog-agent
 
 spec:
   tier: Zero
@@ -92,7 +92,7 @@ kind: service
 metadata:
   name: datadog-cluster-agent
   description: The Datadog Cluster Agent is a containerized application that runs in your Kubernetes cluster.
-  displayName: Datadog Cluster Agent
+  displayName: datadog-cluster-agent
 
 spec:
   tier: Zero
@@ -118,7 +118,7 @@ metadata:
     the Datadog Operator provides agent configuration validation, orchestration of creating/updating Datadog Agent
     resources, and other features.
 
-  displayName: Datadog Operator
+  displayName: datadog-operator
 
 spec:
   tier: Zero
