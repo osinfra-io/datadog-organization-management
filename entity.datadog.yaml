@@ -9,22 +9,22 @@ metadata:
 
   displayName: datadog
   links:
-    - name: Gitbook
+    - name: docs.osinfra.io
       type: doc
       provider: Gitbook
       url: "https://docs.osinfra.io/product-guides/datadog"
 
-    - name: Datadog Organization Management
+    - name: datadog-organization-management
       type: repo
       provider: Github
       url: "https://github.com/osinfra-io/datadog-organization-management"
 
-    - name: Datadog Operator
+    - name: terraform-kubernetes-datadog-operator
       type: repo
       provider: Github
       url: "https://github.com/osinfra-io/terraform-kubernetes-datadog-operator"
 
-    - name: Datadog Google Integration
+    - name: terraform-datadog-google-integration
       type: repo
       provider: Github
       url: "https://github.com/osinfra-io/terraform-datadog-google-integration"
