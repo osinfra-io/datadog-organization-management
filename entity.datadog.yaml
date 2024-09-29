@@ -14,25 +14,20 @@ metadata:
       provider: Gitbook
       url: "https://docs.osinfra.io/product-guides/datadog"
 
-    - name: GitHub
+    - name: Datadog Organization Management
       type: repo
       provider: Github
-      url: "https://github.com/osinfra-io/google-cloud-kubernetes"
+      url: "https://github.com/osinfra-io/datadog-organization-management"
 
-    - name: GitHub
+    - name: Datadog Operator
       type: repo
       provider: Github
       url: "https://github.com/osinfra-io/terraform-kubernetes-datadog-operator"
 
-    - name: GitHub
+    - name: Datadog Google Integration
       type: repo
       provider: Github
       url: "https://github.com/osinfra-io/terraform-datadog-google-integration"
-
-    - name: GitHub
-      type: repo
-      provider: Github
-      url: "https://github.com/osinfra-io/datadog-organization-management"
 
   contacts:
     - type: email
